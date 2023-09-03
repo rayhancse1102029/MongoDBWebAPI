@@ -20,8 +20,8 @@ namespace MongoDBWebAPI.Controllers
         [HttpPost]
         public ActionResult Insert([FromBody] User model)
         {
-            //var collection = _mongoDBService.Database.GetCollection<User>("Users");
-            //collection.InsertOne(model);
+            //    var collection = _mongoDBService.Database.GetCollection<User>("Users");
+            //    collection.InsertOne(model);
             return Ok();
         }
 

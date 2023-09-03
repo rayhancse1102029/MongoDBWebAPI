@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using MongoDBWebAPI.Data;
+using MongoDBWebAPI.Services.Interfaces;
+using MongoDBWebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,20 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+
+#region MongoDB Configuration
+builder.Services.Configure<StudentStoreDatabaseSettings>(
+                builder.Configuration.GetSection(nameof(StudentStoreDatabaseSettings)));
+
+builder.Services.AddSingleton<IStudentStoreDatabaseSettings>(sp =>
+    sp.GetRequiredService<IOptions<StudentStoreDatabaseSettings>>().Value);
+
+builder.Services.AddSingleton<IMongoClient>(s =>
+        new MongoClient(builder.Configuration.GetValue<string>("StudentStoreDatabaseSettings:ConnectionString")));
+
+builder.Services.AddScoped<IStudentService, StudentService>();
+#endregion
 
 var app = builder.Build();
 
