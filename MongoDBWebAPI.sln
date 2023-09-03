@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDBWebAPI.Models", "Mon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDBWebAPI.Services", "MongoDBWebAPI.Services\MongoDBWebAPI.Services.csproj", "{BA33ABE9-E1AA-454F-ADF1-37F101A33ABD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDBWebAPI.Helpers", "MongoDBWebAPI.Helpers\MongoDBWebAPI.Helpers.csproj", "{AA41B51B-F2CE-4497-B11A-AFDCE277488D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BA33ABE9-E1AA-454F-ADF1-37F101A33ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA33ABE9-E1AA-454F-ADF1-37F101A33ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA33ABE9-E1AA-454F-ADF1-37F101A33ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA41B51B-F2CE-4497-B11A-AFDCE277488D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA41B51B-F2CE-4497-B11A-AFDCE277488D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA41B51B-F2CE-4497-B11A-AFDCE277488D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA41B51B-F2CE-4497-B11A-AFDCE277488D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

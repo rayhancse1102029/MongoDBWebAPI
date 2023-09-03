@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 using MongoDBWebAPI.Data;
 using MongoDBWebAPI.Data.Entity;
+using MongoDBWebAPI.Helpers;
+using MongoDBWebAPI.Models;
+using MongoDBWebAPI.Services;
+using MongoDBWebAPI.Services.Interfaces;
 
 namespace MongoDBWebAPI.Controllers
 {
@@ -9,23 +14,33 @@ namespace MongoDBWebAPI.Controllers
     [ApiController]
     public class MongoDBController : ControllerBase
     {
-        private readonly MongoDBService _mongoDBService;
+        private readonly IMongoCollection<Student> _students;
 
-        public MongoDBController(MongoDBService mongoDBService)
+        public MongoDBController()
         {
-            _mongoDBService = mongoDBService;
+            _students = MongoDBContextHelper._database.GetCollection<Student>("studentcourses");
         }
-
-        // Example: Insert a document
+        // POST api/<StudentsController>
         [HttpPost]
-        public ActionResult Insert([FromBody] User model)
+        [Route("CreateStudent")]
+        public ActionResult<Student> CreateStudent([FromBody] Student student)
         {
-            //    var collection = _mongoDBService.Database.GetCollection<User>("Users");
-            //    collection.InsertOne(model);
-            return Ok();
+            try
+            {
+                _students.InsertOne(student);
+                return Ok(student);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-
-        // Implement other CRUD operations similarly
+        [HttpGet]
+        [Route("GetAllStudents")]
+        public List<Student> GetAllStudents()
+        {
+            return _students.Find(student => true).ToList();
+        }
 
     }
 }
